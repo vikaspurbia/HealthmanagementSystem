@@ -7,26 +7,39 @@ import Home from './pages/home';
 import Contact from './pages/contact';
 import About from './pages/about';
 import Navbar from './dashboard-components/navbar';
+import Pateints from './pages/pateints';
+import Doctors from './pages/doctors';
+import Appointment from './pages/appointment';
 
 
 
-function App () {
+const routes = [
+  { path: "/home", element: <Home /> },
+  { path: "/patients", element: <Pateints/>  },
+  { path: "/doctors", element: <Doctors />  },
+  { path: "/appointment", element: <Appointment /> },
+  { path: "/contact", element: <Contact /> },
+  { path: "/about", element: <About /> },
+  
+
+];
+
+function App() {
   return (
-    
     <Router>
-        <Navbar/>
-      <div className="flex">
+      <Navbar />
+      <div className="flex  bg-gray-100">
         <Sidebar />
-        <div className="flex p-10">
+        <div className="flex-grow p-10">
           <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/contact" element={<Contact/>} />
-            <Route path="/about" element={<About />} />
+            {routes.map((route, index) => (
+              <Route key={index} path={route.path} element={route.element} />
+            ))}
           </Routes>
         </div>
       </div>
     </Router>
   );
-};
+}
 
 export default App;
